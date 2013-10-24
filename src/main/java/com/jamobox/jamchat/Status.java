@@ -18,6 +18,11 @@ package main.java.com.jamobox.jamchat;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+/**
+ * Contains enumerated values to determine connection status.
+ *
+ * @author Pete Wicken
+ */
 public enum Status {
 
     SERV_CONNECTED,

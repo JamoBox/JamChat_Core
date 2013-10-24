@@ -18,6 +18,7 @@ package main.java.com.jamobox.jamchat;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+//NOTE: This *could* be moved to the GUI instead of being in the core
 public class ChatServer implements Server {
 
     private final String name = "ChatServer";

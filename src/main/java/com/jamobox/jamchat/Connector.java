@@ -31,6 +31,12 @@ public class Connector {
 
     private Socket serverSock;
 
+    /**
+     * Attempts to connect to the given Server.
+     *
+     * @param server The server to connect to
+     * @return The connection status
+     */
     public Status connect(Server server) {
         try {
             serverSock = new Socket(server.getAddress(), server.getPort());
@@ -44,6 +50,12 @@ public class Connector {
         }
     }
 
+    /**
+     * Attempts to disconnect from the given Server.
+     *
+     * @param server The server to disconnect from
+     * @return The connection status
+     */
     public Status disconnect(Server server) {
         if (serverSock != null)
             try {
