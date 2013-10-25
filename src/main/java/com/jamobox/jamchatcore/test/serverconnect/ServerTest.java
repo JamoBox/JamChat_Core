@@ -28,7 +28,7 @@ public class ServerTest {
     public static void main(String[] args) {
         Status connectStat;
 
-        Server server = new ChatServer("127.0.0.1", 23239);
+        Server server = new ChatServer("localhost", 23239);
         Connector serverConnector = new Connector();
 
         connectStat = serverConnector.connect(server);
