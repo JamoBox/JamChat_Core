@@ -18,6 +18,8 @@ package main.java.com.jamobox.jamchat;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+import main.java.com.jamobox.jamchat.server.Server;
+
 import java.io.IOException;
 import java.net.Socket;
 
