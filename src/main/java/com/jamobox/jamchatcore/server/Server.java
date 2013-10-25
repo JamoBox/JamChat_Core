@@ -1,4 +1,4 @@
-package main.java.com.jamobox.jamchat.server;
+package main.java.com.jamobox.jamchatcore.server;
 
 /**
  * JamChat

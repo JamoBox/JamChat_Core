@@ -1,4 +1,4 @@
-package main.java.com.jamobox.jamchat.server;
+package main.java.com.jamobox.jamchatcore;
 
 /**
  * JamChat
@@ -18,11 +18,17 @@ package main.java.com.jamobox.jamchat.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
-public class Writer {
+/**
+ * Contains enumerated values to determine connection status.
+ *
+ * @author Pete Wicken
+ */
+public enum Status {
 
-    public Writer(Server server) {
-
-    }
+    SERV_CONNECTED,
+    SERV_DISCONNECTED,
+    ERR_SERV_CONNECT,
+    ERR_SERV_DISCONNECT,
+    ERR_NOSOCK
 
 }
-
