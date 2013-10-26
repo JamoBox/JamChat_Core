@@ -15,6 +15,10 @@ The final part of the project is the server. As the server requires no user inte
 should be run by itself. The server should manage a list of known clients and handle connecting them and maintaining the
 connection between them.
 
+## Diagrams
+#### Starting a chat
+![chat_start](http://i.imgur.com/znT30Bq.png)
+
 ##Related Repositories
 - [JamChat_Client](https://github.com/JamoBox/JamChat_Client)
 - [JamChat_Server](https://github.com/JamoBox/JamChat_Server)
