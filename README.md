@@ -1,6 +1,6 @@
-JamChat
+JamChat_Core
 ==========
-Client library for the JamChat project
+Core library for the JamChat project
 
 <b>*This project is a work in progress!*</b>
 
