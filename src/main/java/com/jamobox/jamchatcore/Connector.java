@@ -31,7 +31,14 @@ import java.net.Socket;
  */
 public class Connector {
 
-    private Socket serverSock;
+    private static Socket serverSock;
+
+    public static Socket getSocket() {
+        if(serverSock != null)
+            return serverSock;
+        else
+            return null;
+    }
 
     /**
      * Attempts to connect to the given Server.
@@ -69,10 +76,6 @@ public class Connector {
             }
         else
             return Status.ERR_NOSOCK;
-    }
-
-    public boolean testConnection(Server server) {
-        return server.isAlive();
     }
 
 }

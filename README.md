@@ -1,6 +1,6 @@
-JamChat
+JamChat_Core
 ==========
-Client library for the JamChat project
+Core library for the JamChat project
 
 <b>*This project is a work in progress!*</b>
 
@@ -14,3 +14,7 @@ what it does with the information from the core itself.
 The final part of the project is the server. As the server requires no user interface, the core is not a library and
 should be run by itself. The server should manage a list of known clients and handle connecting them and maintaining the
 connection between them.
+
+##Related Repositories
+- [JamChat_Client](https://github.com/JamoBox/JamChat_Client)
+- [JamChat_Server](https://github.com/JamoBox/JamChat_Server)

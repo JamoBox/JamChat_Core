@@ -1,5 +1,10 @@
 package main.java.com.jamobox.jamchatcore.server;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+
 /**
  * JamChat
  * Copyright (C) 2013 Pete Wicken
@@ -18,10 +23,22 @@ package main.java.com.jamobox.jamchatcore.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
-public class Writer {
+public class SocketIO {
 
-    public Writer(Server server) {
+    private Socket socket;
+    private PrintWriter out;
+    private DataInputStream ioStream;
 
+    public SocketIO(Socket socket) throws IOException {
+        this.socket = socket;
+
+        out = new PrintWriter(socket.getOutputStream());
+        ioStream = new DataInputStream(socket.getInputStream());
+    }
+
+    public void write(String s) throws IOException {
+        out.write(s);
+        out.flush();
     }
 
 }

@@ -18,6 +18,8 @@ package main.java.com.jamobox.jamchatcore.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+import java.io.IOException;
+
 /**
  * A server is any node that we can connect to using the client. Servers
  * manage client tracking and handle establishing connections between clients.
@@ -45,16 +47,8 @@ public abstract interface Server {
     public int getPort();
 
     /**
-     * Test if connection to server is alive or not.
-     *
-     * @return true if alive, false if not.
-     */
-    public boolean isAlive();
-
-    /**
      * Send a ping to the server.
      */
-    public void ping() throws Exception;
+    public boolean ping() throws IOException;
 
 }
-

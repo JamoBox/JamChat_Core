@@ -18,21 +18,30 @@ package main.java.com.jamobox.jamchatcore.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
-//NOTE: This *could* be moved to the GUI instead of being in the core
+import main.java.com.jamobox.jamchatcore.Connector;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+
+//TODO: This should be moved to the test branch; this kind of class should be used in the UI implementations and not the core
 public class ChatServer implements Server {
 
     private final String name = "ChatServer";
     private String address;
     private int port;
+    private SocketIO out;
 
-    public ChatServer(String address) {
-        setAddress(address);
-        setPort(23239); // Default port for JamChat
-    }
+    private final int timeout = 3000;
 
     public ChatServer(String address, int port) {
         setAddress(address);
-        setPort(port);
+        setPort(23239); // Default port for JamChat
+        try {
+            out = new SocketIO(Connector.getSocket());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setAddress(String address) {
@@ -55,17 +64,9 @@ public class ChatServer implements Server {
         return 0;
     }
 
-    public void ping() throws Exception {
-        //TODO: send a ping
-    }
-
-    public boolean isAlive() {
-        try {
-            ping();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public boolean ping() throws IOException {
+        InetAddress echoSock = InetAddress.getByName(address);
+        return echoSock.isReachable(timeout);
     }
 
 }
