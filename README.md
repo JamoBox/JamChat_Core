@@ -16,6 +16,9 @@ should be run by itself. The server should manage a list of known clients and ha
 connection between them.
 
 ## Diagrams
+#### Project Overview
+![project_overview](http://i.imgur.com/8YtRvIi.png)
+<p/>
 #### Starting a chat
 ![chat_start](http://i.imgur.com/znT30Bq.png)
 
