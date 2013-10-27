@@ -1,7 +1,6 @@
 package test.java.serverconnect;
 
 import main.java.com.jamobox.jamchatcore.Connector;
-import main.java.com.jamobox.jamchatcore.server.ChatServer;
 import main.java.com.jamobox.jamchatcore.server.Server;
 import main.java.com.jamobox.jamchatcore.Status;
 

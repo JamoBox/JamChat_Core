@@ -1,4 +1,4 @@
-package main.java.com.jamobox.jamchatcore.server;
+package test.java.serverconnect;
 
 /**
  * JamChat
@@ -19,6 +19,8 @@ package main.java.com.jamobox.jamchatcore.server;
  */
 
 import main.java.com.jamobox.jamchatcore.Connector;
+import main.java.com.jamobox.jamchatcore.server.Server;
+import main.java.com.jamobox.jamchatcore.server.SocketIO;
 
 import java.io.IOException;
 import java.net.InetAddress;
