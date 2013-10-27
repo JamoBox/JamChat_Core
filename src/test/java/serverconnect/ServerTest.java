@@ -1,4 +1,4 @@
-package test.serverconnect;
+package test.java.serverconnect;
 
 import main.java.com.jamobox.jamchatcore.Connector;
 import main.java.com.jamobox.jamchatcore.server.ChatServer;
