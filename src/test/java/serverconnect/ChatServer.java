@@ -66,7 +66,7 @@ public class ChatServer extends Server {
     }
 
     public int getPort() {
-        return 0;
+        return port;
     }
 
     public long ping() throws IOException {
