@@ -34,7 +34,7 @@ public class ServerTest {
 
         switch (connectStat) {
             case SERV_CONNECTED:
-                System.out.println("connected");
+                System.out.println("Connected");
                 break;
             case ERR_NOSOCK:
                 System.out.println("Null socket");
