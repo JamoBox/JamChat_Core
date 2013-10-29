@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-//TODO: This should be moved to the test branch; this kind of class should be used in the UI implementations and not the core
 public class ChatServer extends Server {
 
     private final String name = "ChatServer";
