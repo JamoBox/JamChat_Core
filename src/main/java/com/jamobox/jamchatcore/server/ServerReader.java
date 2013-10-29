@@ -1,7 +1,7 @@
 package main.java.com.jamobox.jamchatcore.server;
 
 /**
- * JamChat
+ * JamChat_Core
  * Copyright (C) 2013 Pete Wicken
  * <p/>
  * This program is free software: you can redistribute it and/or modify
@@ -18,24 +18,38 @@ package main.java.com.jamobox.jamchatcore.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
 
+/**
+ * Handles reading server input streams
+ * TODO: Create a cleaner way of getting the input. Perhaps a temp file may be useful.
+ *
+ * @author Pete Wicken
+ */
+public class ServerReader implements Runnable {
 
-public class SocketIO {
+    private static String[] currentLine;
+    private Server server;
 
-    private Socket socket;
-    private PrintWriter out;
-
-    public SocketIO(Socket socket) throws IOException {
-        this.socket = socket;
-        out = new PrintWriter(socket.getOutputStream());
+    public ServerReader(Server server) {
+        this.server = server;
     }
 
-    public void write(String s) throws IOException {
-        out.write(s);
-        out.flush();
+    public static String[] getCurrentLine() {
+        return currentLine;
+    }
+
+    public void run() {
+        try {
+            BufferedReader reader = server.getServerReader();
+            String[] input;
+            while ((input = reader.readLine().split(" ")) != null) {
+                currentLine = input;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

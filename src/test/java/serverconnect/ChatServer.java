@@ -20,6 +20,7 @@ package test.java.serverconnect;
 
 import main.java.com.jamobox.jamchatcore.Connector;
 import main.java.com.jamobox.jamchatcore.server.Server;
+import main.java.com.jamobox.jamchatcore.server.ServerReader;
 import main.java.com.jamobox.jamchatcore.server.SocketIO;
 
 import java.io.IOException;
@@ -27,19 +28,22 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 //TODO: This should be moved to the test branch; this kind of class should be used in the UI implementations and not the core
-public class ChatServer implements Server {
+public class ChatServer extends Server {
 
     private final String name = "ChatServer";
     private String address;
     private int port;
     private SocketIO out;
+    private Connector connector;
 
     private final int timeout = 3000;
 
     public ChatServer(String address, int port) {
         setAddress(address);
-        setPort(23239); // Default port for JamChat
+        setPort(port);
+        connector = new Connector();
         try {
+            connector.connect(this);
             out = new SocketIO(Connector.getSocket());
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,16 +63,23 @@ public class ChatServer implements Server {
     }
 
     public String getAddress() {
-        return null;
+        return address;
     }
 
     public int getPort() {
         return 0;
     }
 
-    public boolean ping() throws IOException {
-        InetAddress echoSock = InetAddress.getByName(address);
-        return echoSock.isReachable(timeout);
+    public long ping() throws IOException {
+        System.out.print("Pinging "+getName()+"("+getAddress()+":"+getPort()+")");
+        long start = System.currentTimeMillis();
+        out.write("PING");
+        while (!(ServerReader.getCurrentLine()[0].equalsIgnoreCase("PONG")))
+            if ((System.currentTimeMillis() - start) < 30000)
+                System.out.print(".");
+            else
+                System.out.println("Ping timeout. Server unresponsive");
+        return (System.currentTimeMillis() - start);
     }
 
 }

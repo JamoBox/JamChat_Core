@@ -18,7 +18,10 @@ package main.java.com.jamobox.jamchatcore.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
 
 /**
  * A server is any node that we can connect to using the client. Servers
@@ -29,26 +32,38 @@ import java.io.IOException;
  *
  * @author Pete Wicken
  */
-public abstract interface Server {
+public abstract class Server extends Socket {
 
     /**
      * @return The unique server name.
      */
-    public String getName();
+    public abstract String getName();
 
     /**
      * @return The IP address or hostname of the server.
      */
-    public String getAddress();
+    public abstract String getAddress();
 
     /**
      * @return The port the server is listening on.
      */
-    public int getPort();
+    public abstract int getPort();
 
     /**
      * Send a ping to the server.
+     *
+     * @return The response time.
      */
-    public boolean ping() throws IOException;
+    public abstract long ping() throws IOException;
+
+    /**
+     * Get the input stream from the server.
+     *
+     * @return Reader from socket.
+     * @throws IOException
+     */
+    public BufferedReader getServerReader() throws IOException {
+        return new BufferedReader(new InputStreamReader(this.getInputStream()));
+    }
 
 }
