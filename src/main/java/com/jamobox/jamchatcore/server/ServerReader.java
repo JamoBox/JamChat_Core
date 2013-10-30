@@ -29,7 +29,7 @@ import java.io.IOException;
  */
 public class ServerReader implements Runnable {
 
-    private static String[] currentLine;
+    private static String[] currentLine = null;
     private Server server;
 
     public ServerReader(Server server) {

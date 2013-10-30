@@ -3,6 +3,9 @@ package test.java.serverconnect;
 import main.java.com.jamobox.jamchatcore.Connector;
 import main.java.com.jamobox.jamchatcore.server.Server;
 import main.java.com.jamobox.jamchatcore.Status;
+import main.java.com.jamobox.jamchatcore.server.ServerReader;
+
+import java.io.IOException;
 
 /**
  * JamChat
@@ -35,6 +38,17 @@ public class ServerTest {
         switch (connectStat) {
             case SERV_CONNECTED:
                 System.out.println("Connected");
+
+                Thread readThread = new Thread(new ServerReader(server));
+
+                try {
+                    System.out.println("Pinging "+server.getName()+"("+server.getAddress()+":"+server.getPort()+")");
+                    long pingTime = server.ping();
+                    System.out.println("Ping Response: "+pingTime);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case ERR_NOSOCK:
                 System.out.println("Null socket");

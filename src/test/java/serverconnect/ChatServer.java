@@ -70,14 +70,16 @@ public class ChatServer extends Server {
     }
 
     public long ping() throws IOException {
-        System.out.print("Pinging "+getName()+"("+getAddress()+":"+getPort()+")");
         long start = System.currentTimeMillis();
         out.write("PING");
-        while (!(ServerReader.getCurrentLine()[0].equalsIgnoreCase("PONG")))
-            if ((System.currentTimeMillis() - start) < 30000)
-                System.out.print(".");
-            else
-                System.out.println("Ping timeout. Server unresponsive");
+        if (ServerReader.getCurrentLine() != null) {
+            System.out.println(ServerReader.getCurrentLine()[0]);
+            while (!(ServerReader.getCurrentLine()[0].equalsIgnoreCase("PONG")))
+                if ((System.currentTimeMillis() - start) < 30000)
+                    System.out.print(".");
+                else
+                    System.out.println("Ping timeout. Server unresponsive");
+        }
         return (System.currentTimeMillis() - start);
     }
 
