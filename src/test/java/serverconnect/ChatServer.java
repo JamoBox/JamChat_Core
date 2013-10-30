@@ -21,18 +21,16 @@ package test.java.serverconnect;
 import main.java.com.jamobox.jamchatcore.Connector;
 import main.java.com.jamobox.jamchatcore.server.Server;
 import main.java.com.jamobox.jamchatcore.server.ServerReader;
-import main.java.com.jamobox.jamchatcore.server.SocketIO;
+import main.java.com.jamobox.jamchatcore.server.ServerWriter;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
 
 public class ChatServer extends Server {
 
     private final String name = "ChatServer";
     private String address;
     private int port;
-    private SocketIO out;
+    private ServerWriter out;
     private Connector connector;
 
     private final int timeout = 3000;
@@ -43,7 +41,7 @@ public class ChatServer extends Server {
         connector = new Connector();
         try {
             connector.connect(this);
-            out = new SocketIO(Connector.getSocket());
+            out = new ServerWriter(Connector.getSocket());
         } catch (IOException e) {
             e.printStackTrace();
         }

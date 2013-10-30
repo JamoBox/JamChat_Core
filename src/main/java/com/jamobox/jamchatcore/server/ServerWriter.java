@@ -23,12 +23,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 
-public class SocketIO {
+public class ServerWriter {
 
     private Socket socket;
     private PrintWriter out;
 
-    public SocketIO(Socket socket) throws IOException {
+    public ServerWriter(Socket socket) throws IOException {
         this.socket = socket;
         out = new PrintWriter(socket.getOutputStream());
     }
