@@ -18,9 +18,13 @@ package main.java.com.jamobox.jamchatcore.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+import main.java.com.jamobox.jamchatcore.ServerCodes;
+import main.java.com.jamobox.jamchatcore.Status;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
@@ -34,6 +38,16 @@ import java.net.Socket;
  */
 public abstract class Server extends Socket {
 
+    /**
+     * Creates a new Server object and attempts to connect to it.
+     *
+     * @param address The server address to connect to.
+     * @param port The port to connect to on the server.
+     * @throws IOException
+     */
+    public Server(String address, int port) throws IOException {
+        super(address, port);
+    }
     /**
      * @return The unique server name.
      */
@@ -51,10 +65,21 @@ public abstract class Server extends Socket {
 
     /**
      * Send a ping to the server.
+     * //TODO: Make this work better
      *
      * @return The response time.
      */
-    public abstract long ping() throws IOException;
+    public long ping() throws IOException {
+        long startTime = System.currentTimeMillis();
+        sendMessage("PING");
+        if (ServerReader.getCurrentLine() != null)
+            while (!(ServerReader.getCurrentLine()[0].equalsIgnoreCase(ServerCodes.PING_RESPONSE)))
+                if ((System.currentTimeMillis() - startTime) < 30000) // 30 second time-out
+                    continue;
+                else
+                    return -1;
+        return (System.currentTimeMillis() - startTime);
+    }
 
     /**
      * Get the input stream from the server.
@@ -64,6 +89,41 @@ public abstract class Server extends Socket {
      */
     public BufferedReader getServerReader() throws IOException {
         return new BufferedReader(new InputStreamReader(this.getInputStream()));
+    }
+
+    public PrintWriter getServerWriter() throws IOException {
+        return new PrintWriter(this.getOutputStream());
+    }
+
+    /**
+     * Send the server a message.
+     *
+     * @param message the message to be sent to the server
+     */
+    public void sendMessage(String message) {
+        try {
+            ServerWriter writer = new ServerWriter(this);
+            writer.write(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Status getConnectStatus() {
+        return this.isConnected() ? Status.SERV_CONNECTED : Status.ERR_SERV_CONNECT;
+    }
+
+    public Status disconnect(Server server) {
+        if (this.isConnected())
+            try {
+                this.close();
+                return Status.SERV_DISCONNECTED;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return Status.ERR_SERV_DISCONNECT;
+            }
+        else
+            return Status.ERR_NOSOCK;
     }
 
 }

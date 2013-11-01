@@ -1,8 +1,6 @@
 package test.java.serverconnect;
 
-import main.java.com.jamobox.jamchatcore.Connector;
 import main.java.com.jamobox.jamchatcore.server.Server;
-import main.java.com.jamobox.jamchatcore.Status;
 import main.java.com.jamobox.jamchatcore.server.ServerReader;
 
 import java.io.IOException;
@@ -27,15 +25,10 @@ import java.io.IOException;
 
 public class ServerTest {
 
-    public static void main(String[] args) {
-        Status connectStat;
-
+    public static void main(String[] args) throws IOException {
         Server server = new ChatServer("127.0.0.1", 23239);
-        Connector serverConnector = new Connector();
 
-        connectStat = serverConnector.connect(server);
-
-        switch (connectStat) {
+        switch (server.getConnectStatus()) {
             case SERV_CONNECTED:
                 System.out.println("Connected");
 

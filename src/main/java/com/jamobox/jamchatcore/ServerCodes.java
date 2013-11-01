@@ -1,7 +1,7 @@
-package main.java.com.jamobox.jamchatcore.server;
+package main.java.com.jamobox.jamchatcore;
 
 /**
- * JamChat
+ * JamChat_Core
  * Copyright (C) 2013 Pete Wicken
  * <p/>
  * This program is free software: you can redistribute it and/or modify
@@ -18,24 +18,8 @@ package main.java.com.jamobox.jamchatcore.server;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
-import java.io.IOException;
-import java.io.PrintWriter;
+public abstract interface ServerCodes {
 
-
-public class ServerWriter {
-
-    private Server server;
-    private PrintWriter out;
-
-    public ServerWriter(Server server) throws IOException {
-        this.server = server;
-        out = new PrintWriter(server.getServerWriter());
-    }
-
-    public void write(String s) throws IOException {
-        out.write(s);
-        out.flush();
-    }
+    public static final String PING_RESPONSE = "PONG";
 
 }
-
