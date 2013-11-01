@@ -21,7 +21,10 @@ package main.java.com.jamobox.jamchatcore.server;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
+/**
+ * Handles writing to the server output stream.
+ * @author Pete Wicken
+ */
 public class ServerWriter {
 
     private Server server;
