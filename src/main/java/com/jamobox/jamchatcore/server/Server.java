@@ -111,7 +111,9 @@ public abstract class Server extends Socket {
     }
 
     /**
-     * Send the server a message.
+     * Attempts to send the server the given message. Messages
+     * must always begin with their corresponding request code
+     * so the server can identify the desired action.
      *
      * @param message the message to be sent to the server
      */
