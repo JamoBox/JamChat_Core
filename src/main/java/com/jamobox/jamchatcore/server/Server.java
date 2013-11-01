@@ -64,17 +64,32 @@ public abstract class Server extends Socket {
     public abstract int getPort();
 
     /**
-     * Send a ping to the server.
-     * //TODO: Make this work better
+     * Sends a ping message to the server and calculates the
+     * response time. Uses a default timeout of 30 seconds before
+     * returning escape code -1 for an unresponsive server.
      *
      * @return The response time.
      */
     public long ping() throws IOException {
+        return ping(30000); // 30 seconds
+    }
+
+    /**
+     * Sends a ping message to the server and calculates the
+     * response time. The request will timeout after the amount of time
+     * taken is longer than the timeout limit; it will then return the escape
+     * code -1 to signify an unresponsive server.
+     * //TODO: Make this work better
+     *
+     * @param timeout The amount of time (ms) until the request times out.
+     * @return The response time.
+     */
+    public long ping(long timeout) throws IOException {
         long startTime = System.currentTimeMillis();
         sendMessage("PING");
         if (ServerReader.getCurrentLine() != null)
             while (!(ServerReader.getCurrentLine()[0].equalsIgnoreCase(ServerCodes.PING_RESPONSE)))
-                if ((System.currentTimeMillis() - startTime) < 30000) // 30 second time-out
+                if ((System.currentTimeMillis() - startTime) < timeout)
                     continue;
                 else
                     return -1;
