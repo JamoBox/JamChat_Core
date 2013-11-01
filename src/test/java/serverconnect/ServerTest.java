@@ -52,6 +52,8 @@ public class ServerTest {
                 System.out.println("Connect failed");
                 break;
         }
+
+        server.disconnect();
     }
 
 }
