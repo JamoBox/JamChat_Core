@@ -128,7 +128,7 @@ public abstract class Server extends Socket {
         return this.isConnected() ? Status.SERV_CONNECTED : Status.ERR_SERV_CONNECT;
     }
 
-    public Status disconnect(Server server) {
+    public Status disconnect() {
         if (this.isConnected())
             try {
                 this.close();
