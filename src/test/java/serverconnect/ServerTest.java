@@ -33,12 +33,16 @@ public class ServerTest {
                 System.out.println("Connected");
 
                 Thread readThread = new Thread(new ServerReader(server));
+                try {
+                    server.sendMessage("USERNAME JamoBox");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 try {
                     System.out.println("Pinging "+server.getName()+"("+server.getAddress()+":"+server.getPort()+")");
                     long pingTime = server.ping();
                     System.out.println("Ping Response: "+pingTime);
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -117,30 +117,18 @@ public abstract class Server extends Socket {
      *
      * @param message the message to be sent to the server
      */
-    public void sendMessage(String message) {
-        try {
-            ServerWriter writer = new ServerWriter(this);
-            writer.write(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void sendMessage(String message) throws IOException {
+        ServerWriter writer = new ServerWriter(this);
+        writer.write(message);
     }
 
     public Status getConnectStatus() {
         return this.isConnected() ? Status.SERV_CONNECTED : Status.ERR_SERV_CONNECT;
     }
 
-    public Status disconnect() {
+    public void disconnect() throws IOException {
         if (this.isConnected())
-            try {
                 this.close();
-                return Status.SERV_DISCONNECTED;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return Status.ERR_SERV_DISCONNECT;
-            }
-        else
-            return Status.ERR_NOSOCK;
     }
 
 }
