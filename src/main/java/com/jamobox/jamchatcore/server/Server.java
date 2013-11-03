@@ -93,6 +93,8 @@ public abstract class Server extends Socket {
                     continue;
                 else
                     return -1;
+        else
+            return -1;
         return (System.currentTimeMillis() - startTime);
     }
 
