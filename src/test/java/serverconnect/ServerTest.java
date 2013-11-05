@@ -33,7 +33,7 @@ public class ServerTest {
         try {
             server = new ChatServer(address, port);
         } catch (IOException e) {
-            System.out.println("No JamChat Server running on "+address+":"+port+"");
+            System.out.println("No JamChat Server running on "+address+":"+port);
             System.out.println("Exiting...");
             System.exit(1);
         }
