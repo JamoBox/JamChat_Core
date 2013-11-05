@@ -26,8 +26,17 @@ import java.io.IOException;
 public class ServerTest {
 
     public static void main(String[] args) throws IOException {
-        Server server = new ChatServer("127.0.0.1", 23239);
+        Server server = (Server) null;
+        String address = "127.0.0.1";
+        int port = 23239;
 
+        try {
+            server = new ChatServer(address, port);
+        } catch (IOException e) {
+            System.out.println("No JamChat Server running on "+address+":"+port+"");
+            System.out.println("Exiting...");
+            System.exit(1);
+        }
         switch (server.getConnectStatus()) {
             case SERV_CONNECTED:
                 System.out.println("Connected");
