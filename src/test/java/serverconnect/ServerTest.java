@@ -1,10 +1,5 @@
 package test.java.serverconnect;
 
-import main.java.com.jamobox.jamchatcore.server.Server;
-import main.java.com.jamobox.jamchatcore.server.ServerReader;
-
-import java.io.IOException;
-
 /**
  * JamChat
  * Copyright (C) 2013 Pete Wicken
@@ -22,6 +17,21 @@ import java.io.IOException;
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
+
+/**
+ * This class is designed to implement and test the methods used in the
+ * main package. It also serves as an example for how clients could (and in some cases
+ * <b>should</b> ) implement the JamChat Core library. For example, the flow of connection
+ * to a server is defined here, where we send a username before attempting any other actions.
+ *
+ * @author Pete Wicken
+ */
+
+import main.java.com.jamobox.jamchatcore.server.Server;
+import main.java.com.jamobox.jamchatcore.server.ServerReader;
+
+import java.io.IOException;
+
 
 public class ServerTest {
 
