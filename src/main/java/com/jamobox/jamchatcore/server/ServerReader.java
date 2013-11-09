@@ -21,9 +21,9 @@ package main.java.com.jamobox.jamchatcore.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+//TODO: Create a cleaner way of getting the input. Perhaps a temp file may be useful.
 /**
  * Handles reading server input streams
- * TODO: Create a cleaner way of getting the input. Perhaps a temp file may be useful.
  *
  * @author Pete Wicken
  */
