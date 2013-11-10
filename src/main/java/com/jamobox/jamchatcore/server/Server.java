@@ -130,10 +130,17 @@ public abstract class Server extends Socket {
         writer.write(message);
     }
 
+    /**
+     * @return The connection status of the server.
+     */
     public Status getConnectStatus() {
         return this.isConnected() ? Status.SERV_CONNECTED : Status.ERR_SERV_CONNECT;
     }
 
+    /**
+     * Attempts to disconnect from the server.
+     * @throws IOException
+     */
     public void disconnect() throws IOException {
         if (this.isConnected())
                 this.close();
