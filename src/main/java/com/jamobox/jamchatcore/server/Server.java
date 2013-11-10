@@ -74,12 +74,12 @@ public abstract class Server extends Socket {
         return ping(30000); // 30 seconds
     }
 
+    //TODO: This method needs ALOT of work done on it to make it more effective/accurate.
     /**
      * Sends a ping message to the server and calculates the
      * response time. The request will timeout after the amount of time
      * taken is longer than the timeout limit; it will then return the escape
      * code -1 to signify an unresponsive server.
-     * //TODO: Make this work better
      *
      * @param timeout The amount of time (ms) until the request times out.
      * @return The response time.
@@ -108,6 +108,12 @@ public abstract class Server extends Socket {
         return new BufferedReader(new InputStreamReader(this.getInputStream()));
     }
 
+    /**
+     * Get the output stream to the server.
+     *
+     * @return Writer to socket.
+     * @throws IOException
+     */
     public PrintWriter getServerWriter() throws IOException {
         return new PrintWriter(this.getOutputStream());
     }
