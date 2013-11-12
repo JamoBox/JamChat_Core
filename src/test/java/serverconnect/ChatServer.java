@@ -25,18 +25,14 @@ import java.io.IOException;
 
 public class ChatServer extends Server {
 
-    private final String name = "ChatServer";
     private String address;
     private int port;
-    private ServerWriter out;
-
-    private final int timeout = 3000;
 
     public ChatServer(String address, int port) throws IOException {
         super(address, port);
         setAddress(address);
         setPort(port);
-        out = new ServerWriter(this);
+        new ServerWriter(this);
     }
 
     private void setAddress(String address) {
@@ -48,7 +44,7 @@ public class ChatServer extends Server {
     }
 
     public String getName() {
-        return name;
+        return "ChatServer";
     }
 
     public String getAddress() {
