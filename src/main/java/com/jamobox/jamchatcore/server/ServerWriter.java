@@ -27,11 +27,9 @@ import java.io.PrintWriter;
  */
 public class ServerWriter {
 
-    private Server server;
     private PrintWriter out;
 
     public ServerWriter(Server server) throws IOException {
-        this.server = server;
         out = new PrintWriter(server.getServerWriter());
     }
 
