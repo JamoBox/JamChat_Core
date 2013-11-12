@@ -43,7 +43,7 @@ public class ServerTest {
         try {
             server = new ChatServer(address, port);
         } catch (IOException e) {
-            System.out.println("No JamChat Server running on "+address+":"+port);
+            System.out.printf("No JamChat Server running on %s:%s\n", address, port);
             System.out.println("Exiting...");
             System.exit(1);
         }
@@ -59,7 +59,7 @@ public class ServerTest {
                 }
 
                 try {
-                    System.out.println("Pinging "+server.getName()+"("+server.getAddress()+":"+server.getPort()+")");
+                    System.out.printf("Pinging %s (%s:%s)\n",server.getName(), server.getAddress(),server.getPort());
                     long pingTime = server.ping();
                     System.out.println("Ping Response: "+pingTime);
                 } catch (IOException e) {
