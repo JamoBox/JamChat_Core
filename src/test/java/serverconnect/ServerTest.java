@@ -56,7 +56,7 @@ public class ServerTest {
 
                 Thread readThread = new Thread(new ServerReader(server));
                 try {
-                    server.sendMessage(ServerCodes .USER_NAME+" "+username);
+                    server.sendMessage(ServerCodes.USER_NAME+" "+username);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
