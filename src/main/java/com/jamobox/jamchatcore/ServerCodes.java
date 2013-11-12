@@ -20,6 +20,11 @@ package main.java.com.jamobox.jamchatcore;
 
 public abstract interface ServerCodes {
 
+    /* From server */
     public static final String PING_RESPONSE = "PONG";
+
+    /* To server */
+    public static final String DISCONNECT = "DISCONNECT";
+    public static final String USER_NAME = "USERNAME";
 
 }

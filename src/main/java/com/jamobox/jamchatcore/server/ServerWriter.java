@@ -27,13 +27,13 @@ import java.io.PrintWriter;
  */
 public class ServerWriter {
 
-    private PrintWriter out;
+    private static PrintWriter out;
 
     public ServerWriter(Server server) throws IOException {
         out = new PrintWriter(server.getServerWriter());
     }
 
-    public void write(String s) throws IOException {
+    public static void write(String s) throws IOException {
         out.write(s);
         out.flush();
     }

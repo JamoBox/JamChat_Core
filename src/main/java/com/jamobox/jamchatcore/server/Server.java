@@ -142,8 +142,15 @@ public abstract class Server extends Socket {
      * @throws IOException
      */
     public void disconnect() throws IOException {
-        if (this.isConnected())
-                this.close();
+        ServerWriter.write(ServerCodes.DISCONNECT);
+    }
+
+    public void forceDisconnect() {
+        try {
+            this.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

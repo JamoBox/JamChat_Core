@@ -27,10 +27,12 @@ package test.java.serverconnect;
  * @author Pete Wicken
  */
 
+import main.java.com.jamobox.jamchatcore.ServerCodes;
 import main.java.com.jamobox.jamchatcore.server.Server;
 import main.java.com.jamobox.jamchatcore.server.ServerReader;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 
 public class ServerTest {
@@ -38,6 +40,7 @@ public class ServerTest {
     public static void main(String[] args) throws IOException {
         Server server = (Server) null;
         String address = "127.0.0.1";
+        String username = "JamoBox";
         int port = 23239;
 
         try {
@@ -53,13 +56,13 @@ public class ServerTest {
 
                 Thread readThread = new Thread(new ServerReader(server));
                 try {
-                    server.sendMessage("USERNAME JamoBox");
+                    server.sendMessage(ServerCodes .USER_NAME+" "+username);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
                 try {
-                    System.out.printf("Pinging %s (%s:%s)\n",server.getName(), server.getAddress(),server.getPort());
+                    System.out.printf("Pinging %s (%s:%s)\n", server.getName(), server.getAddress(), server.getPort());
                     long pingTime = server.ping();
                     System.out.println("Ping Response: "+pingTime);
                 } catch (IOException e) {
@@ -76,6 +79,7 @@ public class ServerTest {
                 break;
         }
 
+        new Scanner(System.in).nextLine();
         server.disconnect();
     }
 
