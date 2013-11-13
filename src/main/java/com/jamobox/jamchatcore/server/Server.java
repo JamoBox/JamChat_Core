@@ -73,7 +73,7 @@ public abstract class Server extends Socket {
     public long ping() throws IOException {
         return ping(30000); // 30 seconds
     }
-Small changes
+
     //TODO: This method needs ALOT of work done on it to make it more effective/accurate.
     /**
      * Sends a ping message to the server and calculates the
