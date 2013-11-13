@@ -18,6 +18,13 @@ package main.java.com.jamobox.jamchatcore;
  * along with this program. If not, see [http://www.gnu.org/licenses/].
  */
 
+/**
+ * This interface contains the protocol codes that should be
+ * sent to the server, as well as the codes that will be received from
+ * a server that correctly adheres to the protocol definition.
+ *
+ * @author Pete Wicken
+ */
 public abstract interface ServerCodes {
 
     /* From server */

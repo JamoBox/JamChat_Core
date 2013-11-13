@@ -33,6 +33,12 @@ public class ServerWriter {
         out = new PrintWriter(server.getServerWriter());
     }
 
+    /**
+     * Writes the given string to the server socket writer.
+     *
+     * @param s String to write.
+     * @throws IOException
+     */
     public static void write(String s) throws IOException {
         out.write(s);
         out.flush();

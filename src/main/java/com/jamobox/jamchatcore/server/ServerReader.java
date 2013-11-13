@@ -36,10 +36,19 @@ public class ServerReader implements Runnable {
         this.server = server;
     }
 
+    /**
+     * Get the current input line from the server.
+     *
+     * @return The current input line.
+     */
     public static String[] getCurrentLine() {
         return currentLine;
     }
 
+    /**
+     * Reads from the server input stream, splits the result into
+     * an array of strings (as arguments) and stored in currentLine.
+     */
     public void run() {
         try {
             BufferedReader reader = server.getServerReader();

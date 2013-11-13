@@ -73,7 +73,7 @@ public abstract class Server extends Socket {
     public long ping() throws IOException {
         return ping(30000); // 30 seconds
     }
-
+Small changes
     //TODO: This method needs ALOT of work done on it to make it more effective/accurate.
     /**
      * Sends a ping message to the server and calculates the
@@ -138,13 +138,20 @@ public abstract class Server extends Socket {
     }
 
     /**
-     * Attempts to disconnect from the server.
+     * Attempts to disconnect from the server. The disconnection is handled by
+     * the server rather than the client. This method is preferred over forceDisconnect().
+     *
      * @throws IOException
      */
     public void disconnect() throws IOException {
         ServerWriter.write(ServerCodes.DISCONNECT);
     }
 
+    /**
+     * Forces a disconnection from the server. This differs from disconnect()
+     * as the disconnection is handled on the client's side, as opposed to the server's
+     * side. This should only be used in a case where disconnect does not suffice.
+     */
     public void forceDisconnect() {
         try {
             this.close();
