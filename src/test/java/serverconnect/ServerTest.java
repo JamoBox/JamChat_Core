@@ -54,7 +54,7 @@ public class ServerTest {
             case SERV_CONNECTED:
                 System.out.println("Connected");
 
-                Thread readThread = new Thread(new ServerReader(server));
+                new Thread(new ServerReader(server));
                 try {
                     server.sendMessage(ServerCodes.USER_NAME+" "+username);
                 } catch (IOException e) {
