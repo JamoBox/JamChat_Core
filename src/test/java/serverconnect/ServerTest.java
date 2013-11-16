@@ -38,7 +38,7 @@ import java.util.Scanner;
 public class ServerTest {
 
     public static void main(String[] args) throws IOException {
-        Server server = (Server) null;
+        Server server;
         String address = "127.0.0.1";
         String username = "JamoBox";
         int port = 23239;
