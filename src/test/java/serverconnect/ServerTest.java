@@ -61,13 +61,13 @@ public class ServerTest {
                     e.printStackTrace();
                 }
 
-                try {
+                /*try {
                     System.out.printf("Pinging %s (%s:%s)\n", server.getName(), server.getAddress(), server.getPort());
                     long pingTime = server.ping();
                     System.out.println("Ping Response: "+pingTime);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
                 break;
             case ERR_NOSOCK:
                 System.out.println("Null socket");
@@ -79,7 +79,19 @@ public class ServerTest {
                 break;
         }
 
-        new Scanner(System.in).nextLine();
+        boolean readInput = true;
+        Scanner in = new Scanner(System.in);
+        while (readInput) {
+            String s = in.nextLine();
+            if (s.equalsIgnoreCase("exit")) {
+                readInput = false;
+            } else {
+                server.sendMessage(s);
+                ServerReader.getCurrentLine();
+            }
+
+        }
+
         server.disconnect();
     }
 
