@@ -59,11 +59,6 @@ public abstract class Server extends Socket {
     public abstract String getAddress();
 
     /**
-     * @return The port the server is listening on.
-     */
-    public abstract int getPort();
-
-    /**
      * Sends a ping message to the server and calculates the
      * response time. Uses a default timeout of 30 seconds before
      * returning escape code -1 for an unresponsive server.
