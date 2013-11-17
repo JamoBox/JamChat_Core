@@ -121,8 +121,7 @@ public abstract class Server extends Socket {
      * @param message the message to be sent to the server
      */
     public void sendMessage(String message) throws IOException {
-        ServerWriter writer = new ServerWriter(this);
-        writer.write(message);
+        ServerWriter.write(message);
     }
 
     /**

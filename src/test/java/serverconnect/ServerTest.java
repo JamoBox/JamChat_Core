@@ -38,7 +38,7 @@ import java.util.Scanner;
 public class ServerTest {
 
     public static void main(String[] args) throws IOException {
-        Server server = (Server) null;
+        Server server = null;
         String address = "127.0.0.1";
         String username = "JamoBox";
         int port = 23239;
@@ -54,7 +54,7 @@ public class ServerTest {
             case SERV_CONNECTED:
                 System.out.println("Connected");
 
-                Thread readThread = new Thread(new ServerReader(server));
+                new Thread(new ServerReader(server));
                 try {
                     server.sendMessage(ServerCodes.USER_NAME+" "+username);
                 } catch (IOException e) {
@@ -79,7 +79,19 @@ public class ServerTest {
                 break;
         }
 
-        new Scanner(System.in).nextLine();
+        boolean readInput = true;
+        Scanner in = new Scanner(System.in);
+        while (readInput) {
+            String s = in.nextLine();
+            if (s.equalsIgnoreCase("exit")) {
+                readInput = false;
+            } else {
+                server.sendMessage(s);
+                ServerReader.getCurrentLine();
+            }
+
+        }
+
         server.disconnect();
     }
 
