@@ -81,7 +81,7 @@ public abstract class Server extends Socket {
      */
     public long ping(long timeout) throws IOException {
         long startTime = System.currentTimeMillis();
-        sendMessage("PING");
+        sendMessage(ServerCodes.PING_REQUEST);
         if (ServerReader.getCurrentLine() != null)
             while (!(ServerReader.getCurrentLine()[0].equalsIgnoreCase(ServerCodes.PING_RESPONSE)))
                 if ((System.currentTimeMillis() - startTime) < timeout)
@@ -102,10 +102,10 @@ public abstract class Server extends Socket {
     public BufferedReader getServerReader() throws IOException {
         return new BufferedReader(new InputStreamReader(this.getInputStream()));
     }
-
     /**
      * Get the output stream to the server.
      *
+
      * @return Writer to socket.
      * @throws IOException
      */
