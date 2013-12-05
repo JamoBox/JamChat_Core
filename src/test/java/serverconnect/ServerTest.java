@@ -27,6 +27,7 @@ package test.java.serverconnect;
  * @author Pete Wicken
  */
 
+import main.java.com.jamobox.jamchatcore.ServerCodes;
 import main.java.com.jamobox.jamchatcore.server.Server;
 import main.java.com.jamobox.jamchatcore.server.ServerReader;
 
@@ -54,7 +55,7 @@ public class ServerTest {
                 System.out.println("Connected");
 
                 new Thread(new ServerReader(server));
-                /*try {
+                try {
                     server.sendMessage(ServerCodes.USER_NAME+" "+username);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -66,7 +67,7 @@ public class ServerTest {
                     System.out.println("Ping Response: "+pingTime);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
                 break;
             case ERR_NOSOCK:
                 System.out.println("Null socket");
