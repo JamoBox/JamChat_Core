@@ -62,11 +62,6 @@ public abstract class Server extends Socket {
     public abstract String getAddress();
 
     /**
-     * @return The port the server is listening on.
-     */
-    public abstract int getPort();
-
-    /**
      * Sends a ping message to the server and calculates the
      * response time. Uses a default timeout of 30 seconds before
      * returning escape code -1 for an unresponsive server.
@@ -89,7 +84,7 @@ public abstract class Server extends Socket {
      */
     public long ping(long timeout) throws IOException {
         long startTime = System.currentTimeMillis();
-        sendMessage("PING");
+        sendMessage(ServerCodes.PING_REQUEST);
         if (ServerReader.getCurrentLine() != null)
             while (!(ServerReader.getCurrentLine()[0].equalsIgnoreCase(ServerCodes.PING_RESPONSE)))
                 if ((System.currentTimeMillis() - startTime) < timeout)
@@ -113,10 +108,10 @@ public abstract class Server extends Socket {
 
         return reader;
     }
-
     /**
      * Get the output stream to the server.
      *
+
      * @return Writer to socket.
      * @throws IOException
      */

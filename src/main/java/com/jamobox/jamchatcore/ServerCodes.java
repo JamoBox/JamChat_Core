@@ -33,5 +33,6 @@ public abstract interface ServerCodes {
     /* To server */
     public static final String DISCONNECT = "DISCONNECT";
     public static final String USER_NAME = "USERNAME";
+    public static final String PING_REQUEST = "PING";
 
 }
