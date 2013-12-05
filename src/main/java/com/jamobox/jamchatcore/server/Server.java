@@ -38,6 +38,9 @@ import java.net.Socket;
  */
 public abstract class Server extends Socket {
 
+    private PrintWriter writer;
+    private BufferedReader reader;
+
     /**
      * Creates a new Server object and attempts to connect to it.
      *
@@ -105,7 +108,10 @@ public abstract class Server extends Socket {
      * @throws IOException
      */
     public BufferedReader getServerReader() throws IOException {
-        return new BufferedReader(new InputStreamReader(this.getInputStream()));
+        if (reader == null)
+            reader = new BufferedReader(new InputStreamReader(this.getInputStream()));
+
+        return reader;
     }
 
     /**
@@ -115,7 +121,10 @@ public abstract class Server extends Socket {
      * @throws IOException
      */
     public PrintWriter getServerWriter() throws IOException {
-        return new PrintWriter(this.getOutputStream());
+        if (writer == null)
+            writer = new PrintWriter(this.getOutputStream());
+
+        return writer;
     }
 
     /**
