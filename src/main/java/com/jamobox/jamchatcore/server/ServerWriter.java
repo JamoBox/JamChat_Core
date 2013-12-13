@@ -40,7 +40,7 @@ public class ServerWriter {
      * @throws IOException
      */
     public static void write(String s) throws IOException {
-        out.write(s);
+        out.write(s+"\n");
         out.flush();
     }
 
