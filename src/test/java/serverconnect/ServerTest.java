@@ -82,6 +82,7 @@ public class ServerTest {
         boolean readInput = true;
         Scanner in = new Scanner(System.in);
         while (readInput) {
+            System.out.printf("\n$ ");
             String s = in.nextLine();
             if (s.equalsIgnoreCase("exit")) {
                 readInput = false;
@@ -92,7 +93,6 @@ public class ServerTest {
 
         }
 
-        server.disconnect();
     }
 
 }
